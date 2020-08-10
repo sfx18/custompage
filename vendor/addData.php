@@ -35,21 +35,6 @@ if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( 
         }
     }
 
-//     if(file_exists("/var/kandidat/$login/$folder_name")){
-//     }
-//     else{
-//     mkdir("/var/kandidat/$login/$folder_name");
-//     chmod("/var/kandidat/$login/$folder_name", $permit);
-//     }
-// }elseif(file_exists("/var/kandidat/$login/$folder_name")){
-//     }
-//     else{
-//     mkdir("/var/kandidat/$login/$folder_name");
-//     chmod("/var/kandidat/$login/$folder_name", $permit);
-//     $path = "/var/kandidat/$login/$folder_name";
-//     }
-
-  
     
     $response = uploadFile($path);
  if($response['status'] == true){ 

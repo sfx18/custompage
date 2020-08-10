@@ -47,7 +47,7 @@ if ($_SESSION['user']['groupid'] != 1) {
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="registration()">Зарегистрировать кандидата</a>
   </div>
  </div>
- <div id="dlg" class="easyui-dialog" style="width:450px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
+ <div id="dlg" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
   <form id="fm" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
    <h3>Информация</h3>
    <div style="margin-bottom:10px">
@@ -72,7 +72,7 @@ if ($_SESSION['user']['groupid'] != 1) {
   <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px;">Сохранить</a>
   <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close');" style="width:90px;">Отмена</a>
  </div>
- <div id="dlg2" class="easyui-dialog" style="width:450px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons2'">
+ <div id="dlg2" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons2'">
 <form id="fm2" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
 <h3>Вы загружаете файл для кандидата</h3>
    <div style="margin-bottom:10px">
@@ -93,9 +93,9 @@ if ($_SESSION['user']['groupid'] != 1) {
 </div>
 <div id="dlg-buttons2">
   <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveImg()" style="width:90px;text-align:center;">Сохранить</a>
-  <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close');" style="width:90px;">Отмена</a>
+  <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg2').dialog('close');" style="width:90px;">Отмена</a>
  </div>
- <div id="dlg3" class="easyui-dialog" style="width:450px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons3'">
+ <div id="dlg3" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons3'">
 <form id="fm3" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
 <h3>Список файлов</h3>
    <div class="fileList"></div>

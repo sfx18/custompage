@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'vendor/connect.php';
-if (!$_SESSION['user']['password']) {
+if ($_SESSION['user']['groupid'] != 3) {
     header('Location: /');
 }
 ?>
@@ -32,7 +32,6 @@ if (!$_SESSION['user']['password']) {
      <th field="birthday" width="30">Дата</br> рождения</th>
      <th field="DateVidv" width="30">Дата</br> выдвижения</th>
      <th field="DateReg" width="50">Дата регистрации</th>
-     <!-- <th field="mydatefield" width="50">Дата регистрации</th> -->
 
    </tr>
   </thead>
@@ -76,7 +75,7 @@ if (!$_SESSION['user']['password']) {
   <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px;">Сохранить</a>
   <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close');" style="width:90px;">Отмена</a>
  </div>
- <div id="dlg2" class="easyui-dialog" style="width:450px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons2'">
+ <div id="dlg2" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons2'">
 <form id="fm2" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
 <h3>Вы загружаете файл для кандидата</h3>
    <div style="margin-bottom:10px">
@@ -99,7 +98,7 @@ if (!$_SESSION['user']['password']) {
   <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveImg()" style="width:90px;text-align:center;">Сохранить</a>
   <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg2').dialog('close');" style="width:90px;">Отмена</a>
  </div>
- <div id="dlg3" class="easyui-dialog" style="width:450px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons3'">
+ <div id="dlg3" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons3'">
 <form id="fm3" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
 <h3>Список файлов</h3>
    <div class="fileList"></div>
