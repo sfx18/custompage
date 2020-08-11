@@ -9,12 +9,12 @@
 
     $check_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'");
     if (mysqli_num_rows($check_user) > 0) {
-        if(file_exists("/var/kandidat/$login")){
-        }
-        else{
-        mkdir("/var/kandidat/$login");
-        chmod("/var/kandidat/$login", $permit);
-        }
+        // if(file_exists("/var/kandidat/$login")){
+        // }
+        // else{
+        // mkdir("/var/kandidat/$login");
+        // chmod("/var/kandidat/$login", $permit);
+        // }
 
         $user = mysqli_fetch_assoc($check_user);
 
@@ -31,6 +31,8 @@
             header('Location: ../tik.php');
         }elseif($user['groupid'] == 3){
             header('Location: ../profile.php');
+        }elseif($user['groupid'] == 4){
+            header('Location: ../admin.php');
         }
 
     } else {

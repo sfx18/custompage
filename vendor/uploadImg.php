@@ -11,10 +11,19 @@ if(!empty($_REQUEST['id'])){
     $select = mysqli_query($connect, $query);
     $row = mysqli_fetch_assoc($select);
     $pathsrc = $row['path'];
+    $DateReg = $_REQUEST['DateReg'];
     
     //загрузка файла по пути из БД
     $response = uploadFile($pathsrc);
-     
+
+ if($response['status'] == true){ 
+    $sql = "UPDATE dep SET DateReg='$DateReg' WHERE id = $id";  
+    $update = $connect->query($sql);
+    }else{
+        $response['status'] = 0; 
+        $response['msg'] = 'Ошибка загрузки файла'; 
+    } 
+
 }
 
 echo json_encode($response);

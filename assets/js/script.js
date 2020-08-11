@@ -74,6 +74,32 @@
     });
     }
 
+    function saveFile(){
+        $('#fmRegistration').form('submit',{
+        url: url,
+        onSubmit: function(){
+        return $(this).form('validate');
+        },
+        success: function(response){
+            console.log(response);
+        var respData = $.parseJSON(response);
+        if(respData.status == 0){
+            $.messager.show({
+                title: 'Ошибка',
+                msg: respData.msg
+            });
+        }else{
+            $.messager.show({
+                title: 'Оповещение',
+                msg: respData.msg
+            });
+            $('#dlgRegistration').dialog('close');
+            $('#dg').datagrid('reload');
+        }
+    }
+    });
+    }
+
 
     function saveUser(){
         $('#fm').form('submit',{
@@ -122,5 +148,11 @@
     }
 
     function registration(){
-        alert('Мы работаем над этой функцией!')
+        $('#fileInputUploadFile').html('<input type="file" id ="avatar" name="avatar" accept=".docx, .doc" style="width:100%">');
+            var row = $('#dg').datagrid('getSelected');
+            if (row){
+                $('#dlgRegistration').dialog('open').dialog('center').dialog('setTitle','Зарегистрировать');
+                $('#fmRegistration').form('load',row);
+                url = 'vendor/uploadImg.php?id='+row.id;
+            }else{alert('Выберите строку!')}
     }

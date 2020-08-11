@@ -1,6 +1,7 @@
 body {
     font-family:verdana,helvetica,arial,sans-serif;
-    padding:20px;
+    padding:10px;
+    height: auto;
     font-size:12px;
     margin:0;
 }
@@ -9,6 +10,11 @@ h2 {
     font-weight:bold;
     margin:0;
     margin-bottom:15px;
+}
+h2.logout a{
+    font-size: 14px;
+    text-decoration: none;
+    color: red;
 }
 .demo-info{
 	padding:0 0 12px 0;
