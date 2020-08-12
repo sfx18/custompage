@@ -2,7 +2,7 @@
 include "connect.php"; 
 $response = array( 
     'status' => 0, 
-    'msg' => 'Some problems occurred, please try again.'
+    'msg' => 'Возникли проблемы, попробуйте еще раз.'
 );
 if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( $_REQUEST['father_name']) && !empty($_REQUEST['birthday']) && !empty($_REQUEST['DateVidv'])){ 
     $first_name = $_REQUEST['first_name']; 
@@ -18,7 +18,7 @@ if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( 
         $id = intval($_REQUEST['id']); 
         $DateReg = $_REQUEST['DateReg'];
           
-        $sql = "UPDATE dep SET last_name='$last_name', first_name='$first_name', father_name='$father_name', birthday='$birthday', DateVidv ='$DateVidv', DateReg='$DateReg', NumOkr='$NumOkr' WHERE id = $id"; 
+        $sql = "UPDATE kandidat SET last_name='$last_name', first_name='$first_name', father_name='$father_name', birthday='$birthday', DateVidv ='$DateVidv', DateReg='$DateReg', NumOkr='$NumOkr' WHERE id = $id"; 
         $update = $connect->query($sql); 
 
 

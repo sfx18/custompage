@@ -25,8 +25,8 @@
         $('#fileInputUploadImg').html('<input type="file" id ="avatar" name="avatar" style="width:100%">');
             var row = $('#dg').datagrid('getSelected');
             if (row){
-                $('#dlg2').dialog('open').dialog('center').dialog('setTitle','Загрузить');
-                $('#fm2').form('load',row);
+                $('#dlgUploadImg').dialog('open').dialog('center').dialog('setTitle','Загрузить');
+                $('#fmUploadImg').form('load',row);
                 url = 'vendor/uploadImg.php?id='+row.id;
             }else{alert('Выберите строку!')}
     }
@@ -34,7 +34,7 @@
    function fileList(){
         var row = $('#dg').datagrid('getSelected');
         if (row){
-            $('#dlg3').dialog('open').dialog('center').dialog('setTitle','Список загруженных файлов');
+            $('#dlgFileList').dialog('open').dialog('center').dialog('setTitle','Список загруженных файлов');
             
             jQuery.ajax({
                 url:"vendor/fileList.php",
@@ -49,7 +49,7 @@
     }
 
     function saveImg(){
-        $('#fm2').form('submit',{
+        $('#fmUploadImg').form('submit',{
         url: url,
         onSubmit: function(){
         return $(this).form('validate');
@@ -67,7 +67,7 @@
                 title: 'Оповещение',
                 msg: respData.msg
             });
-            $('#dlg2').dialog('close');
+            $('#dlgUploadImg').dialog('close');
             $('#dg').datagrid('reload');
         }
     }
@@ -148,11 +148,11 @@
     }
 
     function registration(){
-        $('#fileInputUploadFile').html('<input type="file" id ="avatar" name="avatar" accept=".docx, .doc" style="width:100%">');
+        $('#fileInputUploadFile').html('<input type="file" accept=".docx, .doc" id ="avatar" name="avatar" style="width:100%">');
             var row = $('#dg').datagrid('getSelected');
             if (row){
                 $('#dlgRegistration').dialog('open').dialog('center').dialog('setTitle','Зарегистрировать');
                 $('#fmRegistration').form('load',row);
-                url = 'vendor/uploadImg.php?id='+row.id;
+                url = 'vendor/uploadFile.php?id='+row.id;
             }else{alert('Выберите строку!')}
     }

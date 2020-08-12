@@ -45,15 +45,15 @@ if ($_SESSION['user']['groupid'] != 3) {
  </div>
  
  <!-- ФОРМА СО СПИСКОМ ФАЙЛОВ КАНДИДАТА -->
- <div id="dlg3" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons3'">
-<form id="fm3" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
+ <div id="dlgFileList" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons-filelist'">
+<form id="fmFileList" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
 <h3>Список файлов</h3>
    <div class="fileList"></div>
 </form>
 </div>
-<div id="dlg-buttons3">
-  <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="javascript:$('#dlg3').dialog('close');" style="width:90px;text-align:center;">Ок</a>
-  <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg3').dialog('close');" style="width:90px;">Отмена</a>
+<div id="dlg-buttons-filelist">
+  <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="javascript:$('#dlgFileList').dialog('close');" style="width:90px;text-align:center;">Ок</a>
+  <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgFileList').dialog('close');" style="width:90px;">Отмена</a>
  </div>
  
 

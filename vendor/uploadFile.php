@@ -15,13 +15,17 @@ $response = array(
         $row = mysqli_fetch_assoc($select);
         $pathsrc = $row['path'];
         
-        
-        //ЗАГРУЗКА ФАЙЛА ПО ПУТИ ИЗ БД
+        $DateReg = $_REQUEST['DateReg'];
+
+        //загрузка файла по пути из БД
         $response = uploadFile($pathsrc);
         if($response['status']){ 
-            file_put_contents('/var/www/site/custompage/logs/uploadImglog.txt', $response['path'].';', $flags = FILE_APPEND);
+            $sql = "UPDATE kandidat SET DateReg='$DateReg' WHERE id = $id";  
+            $update = $connect->query($sql);
+            $response['msg'] = 'Кандидат успешно зарегистрирован';
+            file_put_contents('/var/www/site/custompage/logs/DateReglog.txt', $response['path'].'___DateReg:'.$DateReg.';', $flags = FILE_APPEND);
         }
-            
+                  
     }
 
 echo json_encode($response);

@@ -86,8 +86,8 @@ if ($_SESSION['user']['groupid'] != 2) {
 
 <!-- ФОРМА ЗАГРУЗКИ МАТЕРИАЛОВ ДЛЯ КАНДИДАТА -->
 
- <div id="dlg2" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons2'">
-<form id="fm2" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
+ <div id="dlgUploadImg" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons-uploadimg'">
+<form id="fmUploadImg" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
 <h3>Вы загружаете файл для кандидата</h3>
    <div style="margin-bottom:10px">
     <input name="last_name" class="easyui-textbox" readonly="readonly" label="Фамилия:" style="width:100%">
@@ -105,23 +105,23 @@ if ($_SESSION['user']['groupid'] != 2) {
     </div> 
 </form>
 </div>
-<div id="dlg-buttons2">
+<div id="dlg-buttons-uploadimg">
   <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveImg()" style="width:90px;text-align:center;">Сохранить</a>
-  <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg2').dialog('close');" style="width:90px;">Отмена</a>
+  <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgUploadImg').dialog('close');" style="width:90px;">Отмена</a>
  </div>
 
 
  <!-- ФОРМА СО СПИСКОМ ФАЙЛОВ КАНДИДАТА -->
 
- <div id="dlg3" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons3'">
-<form id="fm3" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
+ <div id="dlgFileList" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons-filelist'">
+<form id="fmFileList" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
 <h3>Список файлов</h3>
    <div class="fileList"></div>
 </form>
 </div>
-<div id="dlg-buttons3">
-  <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="javascript:$('#dlg3').dialog('close');" style="width:90px;text-align:center;">Ок</a>
-  <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg3').dialog('close');" style="width:90px;">Отмена</a>
+<div id="dlg-buttons-filelist">
+  <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="javascript:$('#dlgFileList').dialog('close');" style="width:90px;text-align:center;">Ок</a>
+  <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgFileList').dialog('close');" style="width:90px;">Отмена</a>
  </div>
 
 
