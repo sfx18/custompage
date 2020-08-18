@@ -43,7 +43,7 @@ if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( 
         $sql = "INSERT INTO `kandidat` (`first_name`,`last_name`,`father_name`,`birthday`,`DateVidv`, `DateReg`, `OkrBC`,`NumOkr`,`path`) VALUES ('$first_name','$last_name','$father_name','$birthday', '$DateVidv', '$DateReg', '$login','$NumOkr', '$path')"; 
         $insert = $connect->query($sql);
         $response['msg'] = 'Кандидат успешно добавлен';
-        file_put_contents('/var/www/site/custompage/logs/addDatalog.txt', $path.'___DataAdd:'.date('Y-m-d_H-i', strtotime("+3 hours")).'___DateVidv:'.$DateVidv.';', $flags = FILE_APPEND);
+        file_put_contents('/var/www/site/custompage/logs/addDatalog.txt', $path.'___DataAdd:'.date('Y-m-d_H-i-s', strtotime("+3 hours")).'___DateVidv:'.$DateVidv.';', $flags = FILE_APPEND);
         file_put_contents('/var/www/site/custompage/logs/addDataFilelog.txt', $response['path'].';', $flags = FILE_APPEND); 
     }
 

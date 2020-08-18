@@ -1,6 +1,6 @@
 <?php
 function uploadFile($folderpath){
-    $path = "$folderpath/".date('Y-m-d_H-i', strtotime("+3 hours")).'_'.$_FILES['avatar']['name'];
+    $path = "$folderpath/".date('Y-m-d_H-i-s', strtotime("+3 hours")).'_'.$_FILES['avatar']['name'];
     if (!move_uploaded_file($_FILES['avatar']['tmp_name'], $path)) {
         return [
             "status" => 0,
