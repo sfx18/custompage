@@ -39,6 +39,7 @@ if ($_SESSION['user']['groupid'] != 4) {
   <div id="tb">
    <input id="term" placeholder="Ввод">
    <a href="javascript:void(0);" class="easyui-linkbutton" plain="true" onclick="doSearch()">Поиск</a>
+   
   </div>
   <div id="tb2">
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Новый</a>
@@ -47,6 +48,18 @@ if ($_SESSION['user']['groupid'] != 4) {
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="uploadImg()">Загрузить материалы</a>
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="fileList()">Список файлов</a>
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="registration()">Зарегистрировать кандидата</a>
+   <select name="raion" id="raion">
+  <option value="0">Выберите ТИК</option>
+   <option value="1">Тирасполь</option>
+   <option value="2">Бендеры</option>
+   <option value="3">Слободзея</option>
+   <option value="4">Григориополь</option>
+   <option value="5">Дубоссары</option>
+   <option value="6">Рыбница</option>
+   <option value="7">Каменка</option>
+   </select>
+   <select name="NumKom" id="NumKom"><option value="">Выберите округ</option></select>
+   <!-- <a href="javascript:void(0);" class="easyui-linkbutton" plain="true" onclick="doSearchRaion()">Поиск</a> -->
   </div>
  </div>
 
@@ -159,6 +172,6 @@ if ($_SESSION['user']['groupid'] != 4) {
   <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgRegistration').dialog('close');" style="width:90px;">Отмена</a>
  </div>
  <h3 class="info">Телефон тех. поддержки 077835290</h3>
- <script type="text/javascript" src="assets/js/script.js"></script>
+ <script type="text/javascript" src="assets/js/scriptadmin.js"></script>
 </body>
 </html>
