@@ -35,9 +35,17 @@ if ($_SESSION['user']['groupid'] != 3) {
   </thead>
  </table>
  <div id="toolbar">
-  <div id="tb">
-   <input id="term" placeholder="Ввод">
-   <a href="javascript:void(0);" class="easyui-linkbutton" plain="true" onclick="doSearch()">Поиск</a>
+  <div id="tb" style="padding-left:5px;padding-top:5px;">
+  <select name="raion" id="raion">
+  <option value="0">Выберите ОИК/ТИК</option>
+   <option value="1">Тирасполь</option>
+   <option value="2">Бендеры</option>
+   <option value="3">Слободзея</option>
+   <option value="4">Григориополь</option>
+   <option value="5">Дубоссары</option>
+   <option value="6">Рыбница</option>
+   <option value="7">Каменка</option>
+   </select>
   </div>
   <div id="tb2">
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="fileList()">Список файлов</a>

@@ -73,8 +73,11 @@ if ($_SESSION['user']['groupid'] != 2) {
 
    <div id="fileInputNewUser" style="margin-bottom:10px">
    </div>
-   <div style="margin-bottom:10px">
+   <div style="margin-bottom:20px">
     <input type="date" name="DateVidv" class="easyui-textbox" required="true" label="Дата выдвижения:" style="width:100%">
+   </div>
+   <div style="margin-bottom:10px">
+    <div class="progress"></div>
    </div>
   </form>
  </div>
@@ -101,8 +104,11 @@ if ($_SESSION['user']['groupid'] != 2) {
    <div style="margin-bottom:10px">
     <input type="date" name="birthday" class="easyui-textbox" readonly="readonly" label="Дата рождения:" style="width:100%">
    </div>
-   <div id="fileInputUploadImg" style="margin-bottom:10px">
+   <div id="fileInputUploadImg" style="margin-bottom:20px">
     </div> 
+    <div style="margin-bottom:10px">
+    <div class="progress"></div>
+   </div>
 </form>
 </div>
 <div id="dlg-buttons-uploadimg">
@@ -144,8 +150,11 @@ if ($_SESSION['user']['groupid'] != 2) {
    </div>
    <div id="fileInputUploadFile" style="margin-bottom:10px">
     </div> 
-    <div style="margin-bottom:50px">
+    <div style="margin-bottom:20px">
     <input type="date" name="DateReg" class="easyui-textbox" required="true" label="Дата регистрации:" style="width:100%">
+   </div>
+   <div style="margin-bottom:10px">
+    <div class="progress"></div>
    </div>
 </form>
 </div>

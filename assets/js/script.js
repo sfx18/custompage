@@ -1,4 +1,42 @@
 
+    jQuery('#raion').change(function(){
+        var selectRaion = jQuery('#raion option:selected').text();
+        if(selectRaion == 'Выберите ОИК/ТИК'){
+            selectRaion = '';
+        }else{
+            selectRaion = jQuery('#raion option:selected').text();
+        }
+        jQuery('#dg').datagrid('load', {
+        term: selectRaion
+        });
+    });
+
+    function upload(file, path) {
+
+        var xhr = new XMLHttpRequest();
+      
+        // обработчик для отправки
+        xhr.upload.onprogress = function(event) {
+            jQuery('.progress').text('Загружено ' + Math.round((event.loaded)/1024) + 'KB' + ' из ' + Math.round((event.total)/1024) + 'KB');
+        }
+      
+        // обработчики успеха и ошибки
+        // если status == 200, то это успех, иначе ошибка
+        xhr.onload = xhr.onerror = function() {
+          if (this.status == 200) {
+              msg = 'success';
+            console.log(msg);
+          } else {
+              msg = 'error ';
+            console.log(msg + this.status);
+          }
+        };
+      
+        xhr.open("POST", path, true);
+        xhr.send(file);
+    
+      }
+    
     function doSearch(){
         $('#dg').datagrid('load', {
         term: $('#term').val()
@@ -7,12 +45,14 @@
         
     var url;
     function newUser(){
+        $('.progress').text('');
         $('#fileInputNewUser').html('<input type="file" id ="avatar" name="avatar" accept=".docx, .doc" required="true" style="width:100%">');
         $('#dlg').dialog('open').dialog('center').dialog('setTitle','Новый кандидат');
         $('#fm').form('clear');
         url = 'vendor/addData.php';
     }
     function editUser(){
+        $('.progress').text('');
         $('#fileInputNewUser').html('');
         var row = $('#dg').datagrid('getSelected');
         if (row){
@@ -22,6 +62,7 @@
         }else{alert('Выберите строку!')}
     }
     function uploadImg(){
+        $('.progress').text('');
         $('#fileInputUploadImg').html('<input type="file" id ="avatar" name="avatar" style="width:100%">');
             var row = $('#dg').datagrid('getSelected');
             if (row){
@@ -52,6 +93,11 @@
         $('#fmUploadImg').form('submit',{
         url: url,
         onSubmit: function(){
+            var input = this.elements.avatar;
+            var file = input.files[0];
+            if (file) {
+              upload(file, "../vendor/uploadImg.php");
+            }
         return $(this).form('validate');
         },
         success: function(response){
@@ -78,6 +124,11 @@
         $('#fmRegistration').form('submit',{
         url: url,
         onSubmit: function(){
+            var input = this.elements.avatar;
+            var file = input.files[0];
+            if (file) {
+            upload(file, "../vendor/uploadFile.php");
+            }
         return $(this).form('validate');
         },
         success: function(response){
@@ -105,6 +156,11 @@
         $('#fm').form('submit',{
         url: url,
         onSubmit: function(){
+            var input = this.elements.avatar;
+            var file = input.files[0];
+            if (file) {
+            upload(file, "../vendor/addData.php");
+            }
         return $(this).form('validate');
         },
         success: function(response){
@@ -148,8 +204,13 @@
     }
 
     function registration(){
+        if(jQuery('#DateReg2') == ''){alert('Кандидат уже зарегистрирован');}
+        $('.progress').text('');
         $('#fileInputUploadFile').html('<input type="file" accept=".docx, .doc" id ="avatar" name="avatar" style="width:100%">');
             var row = $('#dg').datagrid('getSelected');
+            if(row.DateReg2 != ''){
+                alert('Кандидат уже зарегистрирован'); 
+                return false;}
             if (row){
                 $('#dlgRegistration').dialog('open').dialog('center').dialog('setTitle','Зарегистрировать');
                 $('#fmRegistration').form('load',row);
