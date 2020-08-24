@@ -45,6 +45,7 @@ if ($_SESSION['user']['groupid'] != 3) {
    <option value="5">Дубоссары</option>
    <option value="6">Рыбница</option>
    <option value="7">Каменка</option>
+   <option value="8">Днестровск</option>
    </select>
   </div>
   <div id="tb2">
