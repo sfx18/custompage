@@ -21,7 +21,7 @@ if ($_SESSION['user']['groupid'] != 1) {
     <header class="header123">
     <h2 class="logout"><a href="vendor/logout.php">Выйти</a></h2>
     </header>
-    <table id="dg" title="Список кандидатов" class="easyui-datagrid" url="vendor/getData.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" style="width:100%;height:750px;">
+    <table id="dg" title="Список кандидатов" class="easyui-datagrid" url="vendor/getData.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" style="width:100%;height:700px;">
   <thead>
    <tr>
      <th field="last_name" width="50">Фамилия</th>
