@@ -4,7 +4,8 @@ include "connect.php";
 include "functions.php";
 $response = array( 
     'status' => 0, 
-    'msg' => 'Возникли проблемы, попробуйте еще раз.'
+    'msg' => 'Возникли проблемы, попробуйте еще раз.',
+    'check' => 'Default'
 ); 
 if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( $_REQUEST['father_name']) && !empty($_REQUEST['birthday']) && !empty($_REQUEST['DateVidv'])){ 
     $first_name = $_REQUEST['first_name']; 
@@ -41,12 +42,17 @@ if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( 
     $response = uploadFile($path);
     if($response['status']){ 
         $sql = "INSERT INTO `kandidat` (`first_name`,`last_name`,`father_name`,`birthday`,`DateVidv`, `DateReg`, `OkrBC`,`NumOkr`,`path`) VALUES ('$first_name','$last_name','$father_name','$birthday', '$DateVidv', '$DateReg', '$login','$NumOkr', '$path')"; 
-        $insert = $connect->query($sql);
-        $response['msg'] = 'Кандидат успешно добавлен';
-        file_put_contents('/var/www/site/custompage/logs/addDatalog.txt', $path.'___DataAdd:'.date('Y-m-d_H-i-s', strtotime("+3 hours")).'___DateVidv:'.$DateVidv.';', $flags = FILE_APPEND);
-        file_put_contents('/var/www/site/custompage/logs/addDataFilelog.txt', $response['path'].';', $flags = FILE_APPEND); 
+        $insert = mysqli_query($connect,$sqlqtr);
+        if($insert){
+            $response['check'] = 'Запись успешно добавлена в бд';
+            $response['msg'] = 'Кандидат успешно добавлен';
+            file_put_contents('/var/www/site/custompage/logs/addDatalog.txt', $path.'___DataAdd:'.date('Y-m-d_H-i-s', strtotime("+3 hours")).'___DateVidv:'.$DateVidv.';', $flags = FILE_APPEND);
+            file_put_contents('/var/www/site/custompage/logs/addDataFilelog.txt', $response['path'].';', $flags = FILE_APPEND);
+        }else{
+            $response['check'] = 'Ошибка добавления записи в бд';
+            file_put_contents('/var/www/site/custompage/logs/addDataErrorslog.txt', date('Y-m-d_H-i-s', strtotime("+3 hours")).$login.'/'.$response['msg'].';', $flags = FILE_APPEND);
+        }
     }
-
 }
 echo json_encode($response);
 

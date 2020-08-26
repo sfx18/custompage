@@ -24,10 +24,10 @@
         // если status == 200, то это успех, иначе ошибка
         xhr.onload = xhr.onerror = function() {
           if (this.status == 200) {
-              msg = 'success';
+              msg = 'File uploaded success';
             console.log(msg);
           } else {
-              msg = 'error ';
+              msg = 'Error uploaded file ';
             console.log(msg + this.status);
           }
         };
@@ -101,8 +101,8 @@
         return $(this).form('validate');
         },
         success: function(response){
-            console.log(response);
         var respData = $.parseJSON(response);
+        console.log(respData.check);
         if(respData.status == 0){
             $.messager.show({
                 title: 'Ошибка',
@@ -132,8 +132,8 @@
         return $(this).form('validate');
         },
         success: function(response){
-            console.log(response);
         var respData = $.parseJSON(response);
+        console.log(respData.check);
         if(respData.status == 0){
             $.messager.show({
                 title: 'Ошибка',
@@ -165,6 +165,7 @@
         },
         success: function(response){
         var respData = $.parseJSON(response);
+        console.log(respData.check);
         if(respData.status == 0){
             $.messager.show({
                 title: 'Ошибка',
@@ -204,7 +205,6 @@
     }
 
     function registration(){
-        if(jQuery('#DateReg2') == ''){alert('Кандидат уже зарегистрирован');}
         $('.progress').text('');
         $('#fileInputUploadFile').html('<input type="file" accept=".docx, .doc" id ="avatar" name="avatar" style="width:100%">');
             var row = $('#dg').datagrid('getSelected');

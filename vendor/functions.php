@@ -5,11 +5,13 @@ function uploadFile($folderpath){
         return [
             "status" => 0,
             "msg" => "Ошибка загрузки файла",
+            "check" => "Error of upload file",
         ];
     }else{ 
         return  [
             "status" => 1,
             "msg" => "Файл успешно загружен",
+            "check" => "File uploaded success",
             "path" => $path,
         ];
     }

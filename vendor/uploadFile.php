@@ -21,9 +21,15 @@ $response = array(
         $response = uploadFile($pathsrc);
         if($response['status']){ 
             $sql = "UPDATE kandidat SET DateReg='$DateReg' WHERE id = $id";  
-            $update = $connect->query($sql);
+            $update = mysqli_query($connect,$sql);
+            if($update){
+            $response['check'] = 'Запись в бд успешно добавлена';
             $response['msg'] = 'Кандидат успешно зарегистрирован';
             file_put_contents('/var/www/site/custompage/logs/DateReglog.txt', $response['path'].'___DateReg:'.$DateReg.';', $flags = FILE_APPEND);
+            }else{
+                $response['check'] = 'Ошибка добавления записи в бд';
+                $response['msg'] = 'Ошибка регистрации кандидата';
+            }
         }
                   
     }
