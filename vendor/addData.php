@@ -42,7 +42,7 @@ if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( 
     $response = uploadFile($path);
     if($response['status']){ 
         $sql = "INSERT INTO `kandidat` (`first_name`,`last_name`,`father_name`,`birthday`,`DateVidv`, `DateReg`, `OkrBC`,`NumOkr`,`path`) VALUES ('$first_name','$last_name','$father_name','$birthday', '$DateVidv', '$DateReg', '$login','$NumOkr', '$path')"; 
-        $insert = mysqli_query($connect,$sqlqtr);
+        $insert = mysqli_query($connect,$sql);
         if($insert){
             $response['check'] = 'Запись успешно добавлена в бд';
             $response['msg'] = 'Кандидат успешно добавлен';
