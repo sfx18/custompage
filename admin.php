@@ -19,7 +19,7 @@ if ($_SESSION['user']['groupid'] != 4) {
 </head>
 <body>
     <h2 class="logout"><a href="vendor/logout.php">Выйти</a></h2>
-    <table id="dg" title="Список кандидатов" class="easyui-datagrid" url="vendor/getData.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" style="width:100%;height:750px;">
+    <table id="dg" title="Список кандидатов" class="easyui-datagrid" url="vendor/getDataCik.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" style="width:100%;height:750px;">
   <thead>
    <tr>
      <th field="OkrBC" width="20">ОИК/ТИК</th>
