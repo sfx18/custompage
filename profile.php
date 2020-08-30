@@ -19,7 +19,7 @@ if ($_SESSION['user']['groupid'] != 3) {
 </head>
 <body>
     <h2 class="logout"><a href="vendor/logout.php">Выйти</a></h2>
-    <table id="dg" title="Список кандидатов" class="easyui-datagrid" url="vendor/getData.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" style="width:100%;height:750px;">
+    <table id="dg" title="Список кандидатов" class="easyui-datagrid" url="vendor/getDataCik.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" style="width:100%;height:750px;">
   <thead>
    <tr>
      <th field="OkrBC" width="30">ОИК/ТИК</th>
@@ -35,18 +35,24 @@ if ($_SESSION['user']['groupid'] != 3) {
   </thead>
  </table>
  <div id="toolbar">
+ <!-- <input id="term" placeholder="Введите район">
+ <input id="term2" placeholder="Введите округ">
+   <a href="javascript:void(0);" class="easyui-linkbutton" plain="true" onclick="doSearch()">Search</a> -->
   <div id="tb" style="padding-left:5px;padding-top:5px;">
-  <select name="raion" id="raion">
-  <option value="0">Выберите ОИК/ТИК</option>
-   <option value="1">Тирасполь</option>
-   <option value="2">Бендеры</option>
-   <option value="3">Слободзея</option>
-   <option value="4">Григориополь</option>
-   <option value="5">Дубоссары</option>
-   <option value="6">Рыбница</option>
-   <option value="7">Каменка</option>
-   <option value="8">Днестровск</option>
-   </select>
+      <select name="raion" id="raion">
+      <option value="0">Выберите ТИК</option>
+      <option value="1">Тирасполь</option>
+      <option value="2">Бендеры</option>
+      <option value="3">Слободзея</option>
+      <option value="4">Григориополь</option>
+      <option value="5">Дубоссары</option>
+      <option value="6">Рыбница</option>
+      <option value="7">Каменка</option>
+      <option value="8">Днестровск</option>
+      </select>
+      <select name="NumKom" id="NumKom"><option value="">Выберите округ</option></select>
+      <input type="date" id="termDateVidv" style="margin-left:645px;width:130px">
+      <input type="date" id="termDateReg" style="margin-left:10px;width:160px">
   </div>
   <div id="tb2">
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="fileList()">Список файлов</a>
@@ -70,5 +76,6 @@ if ($_SESSION['user']['groupid'] != 3) {
  
  <h3 class="info">Телефон тех. поддержки 077835290</h3>
  <script type="text/javascript" src="assets/js/script.js"></script>
+ <script type="text/javascript" src="assets/js/datagrid-filter.js"></script>
 </body>
 </html>
