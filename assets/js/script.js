@@ -1,5 +1,6 @@
-var selectRaion,selectNumKom;
+var selectRaion,selectNumKom,termDateVidv;
 jQuery('#raion').change(function () {
+    
     selectRaion = jQuery('#raion option:selected').text();
     if (selectRaion == 'Выберите ТИК') {
         selectRaion = '';
@@ -33,21 +34,23 @@ jQuery('#NumKom').change(function () {
     }
     jQuery('#dg').datagrid('load', {
         term: selectRaion,
-        term2: selectNumKom
+        term2: selectNumKom,
     });
 
 });
 
 // jQuery('#termDateVidv').change(function () {
-//     var termDateVidv = jQuery('#termDateVidv').val();
+//     termDateVidv = jQuery('#termDateVidv').val();
+//     alert(termDateVidv);
 //     jQuery('#dg').datagrid('load', {
 //         termDateVidv: termDateVidv
 //     });
-//     // if (selectNumKom == 'Выберите округ') {
-//     //     selectNumKom = '';
+//     // if (termDateVidv == '0000-00-00') {
+//     //     termDateVidv = '';
 //     // } else {
-//     //     selectNumKom = jQuery('#NumKom option:selected').text();
+//     //     termDateVidv = jQuery('#termDateVidv').val();
 //     // }
+    
 //     // $.ajax({
 //     //     type: 'POST',
 //     //     url: 'vendor/getData.php',
@@ -56,7 +59,8 @@ jQuery('#NumKom').change(function () {
 //     //     success: function (data) {
 //     //         jQuery('#dg').datagrid('load', {
 //     //             term: selectRaion,
-//     //             term2: selectNumKom
+//     //             term2: selectNumKom,
+//     //             termDateVidv: termDateVidv
 //     //         });
 //     //     }
 //     // });
@@ -94,7 +98,7 @@ function upload(file, path) {
 function doSearch() {
     $('#dg').datagrid('load', {
         term: $('#term').val(),
-        term2: $('#term2').val()
+        term2: $('#term2').val(),
         // termDateVidv: $('#termDateVidv').val(),
         // termDateReg: $('#termDateReg').val()
     });

@@ -76,6 +76,5 @@ if ($_SESSION['user']['groupid'] != 3) {
  
  <h3 class="info">Телефон тех. поддержки 077835290</h3>
  <script type="text/javascript" src="assets/js/script.js"></script>
- <script type="text/javascript" src="assets/js/datagrid-filter.js"></script>
 </body>
 </html>

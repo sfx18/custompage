@@ -8,15 +8,15 @@ $groupid = $_SESSION['user']['groupid'];
 
 $searchTerm = isset($_POST['term']) ? mysqli_real_escape_string($connect, $_POST['term']) : '';
 $searchTerm2 = isset($_POST['term2']) ? mysqli_real_escape_string($connect, $_POST['term2']) : '';
-// $searchTermDateVidv = isset($_POST['termDateVidv']) ? mysqli_real_escape_string($connect, $_POST['termDateVidv']) : '';
+// $searchTerm3 = isset($_POST['term2']) ? mysqli_real_escape_string($connect, $_POST['term2']) : '';
+// $searchTerm3 = isset($_POST['termDateVidv']) ? $_POST['termDateVidv'] : '';
 // $searchTermDateReg = isset($_POST['termDateReg']) ? mysqli_real_escape_string($connect, $_POST['termDateReg']) : '';
-
-// $searchTerm2 = $_POST['termDateVidv'];
+// $searchTerm3 = $_POST['termDateVidv'];
 $offset = ($page-1)*$rows; 
 $result = array(); 
  
 $whereSQL = "OkrBC LIKE '$searchTerm%' AND NumOkr LIKE '$searchTerm2%'";
-// $whereSQL2 = "DateVidv = '$searchTerm2'";
+// $whereSQL2 = "DateVidv = '$searchTerm3'";
 
 $result = mysqli_query($connect, "SELECT COUNT(*) FROM kandidat WHERE $whereSQL"); 
 $row = mysqli_fetch_row($result); 
