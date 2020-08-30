@@ -73,6 +73,7 @@ if ($_SESSION['user']['groupid'] != 1) {
    </div>
    <div style="margin-bottom:10px">
     <div class="progress"></div>
+    <div class="progressmsg"></div>
    </div>
   </form>
  </div>
@@ -103,6 +104,7 @@ if ($_SESSION['user']['groupid'] != 1) {
     </div>
     <div style="margin-bottom:10px">
     <div class="progress"></div>
+    <div class="progressmsg"></div>
    </div> 
 </form>
 </div>
@@ -149,6 +151,7 @@ if ($_SESSION['user']['groupid'] != 1) {
    </div>
    <div style="margin-bottom:10px">
     <div class="progress"></div>
+    <div class="progressmsg"></div>
    </div>
 </form>
 </div>
