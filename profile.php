@@ -14,12 +14,12 @@ if ($_SESSION['user']['groupid'] != 3) {
     <link rel="stylesheet" type="text/css" href="assets/css/color.css">
     <link rel="stylesheet" type="text/css" href="assets/css/demo.css">
     <link rel="stylesheet" type="text/css" href="assets/css/easyui.css">
-    <script type="text/javascript" src="assets/js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="assets/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquerycik-1.9.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquerycik.easyui.min.js"></script>
 </head>
 <body>
     <h2 class="logout"><a href="vendor/logout.php">Выйти</a></h2>
-    <table id="dg" title="Список кандидатов" class="easyui-datagrid" url="vendor/getDataCik.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" style="width:100%;height:750px;">
+    <table id="dg" title="Список кандидатов" class="easyui-datagrid" url="vendor/getDataCik.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" style="width:100%;height:647px;">
   <thead>
    <tr>
      <th field="OkrBC" width="30">ОИК/ТИК</th>
@@ -35,9 +35,6 @@ if ($_SESSION['user']['groupid'] != 3) {
   </thead>
  </table>
  <div id="toolbar">
- <!-- <input id="term" placeholder="Введите район">
- <input id="term2" placeholder="Введите округ">
-   <a href="javascript:void(0);" class="easyui-linkbutton" plain="true" onclick="doSearch()">Search</a> -->
   <div id="tb" style="padding-left:5px;padding-top:5px;">
       <select name="raion" id="raion">
       <option value="0">Выберите ТИК</option>
@@ -107,7 +104,7 @@ if ($_SESSION['user']['groupid'] != 3) {
 
 
  
- <h3 class="info">Телефон тех. поддержки 077835290</h3>
+ <h3 class="info">Телефон тех. поддержки 077835290(Иван)</h3>
  <script type="text/javascript" src="assets/js/script.js"></script>
 </body>
 </html>

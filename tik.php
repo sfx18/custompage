@@ -21,7 +21,7 @@ if ($_SESSION['user']['groupid'] != 2) {
     <header class="header123">
     <h2 class="logout"><a href="vendor/logout.php">Выйти</a></h2>
     </header>
-    <table id="dg" title="Список кандидатов" class="easyui-datagrid" url="vendor/getData.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" style="width:100%;height:700px;">
+    <table id="dg" title="Список кандидатов" class="easyui-datagrid" url="vendor/getData.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" style="width:100%;height:487px;">
   <thead>
    <tr>
     <th field="NumOkr" width="20">Округ</th>
@@ -166,7 +166,7 @@ if ($_SESSION['user']['groupid'] != 2) {
   <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgRegistration').dialog('close');" style="width:90px;">Отмена</a>
  </div>
 
- <h3 class="info">Телефон тех. поддержки 077835290</h3>
+ <h3 class="info">Телефон тех. поддержки 077835290(Иван)</h3>
  <script type="text/javascript" src="assets/js/script.js"></script>
 </body>
 </html>
