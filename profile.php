@@ -35,8 +35,9 @@ if ($_SESSION['user']['groupid'] != 3) {
   </thead>
  </table>
  <div id="toolbar">
-  <div id="tb" style="padding-left:5px;padding-top:5px;">
-      <select name="raion" id="raion">
+  <div id="tb" style="padding-left:7px;padding-top:7px;">
+  <form id="filter">
+  <select name="raion" id="raion">
       <option value="0">Выберите ТИК</option>
       <option value="1">Тирасполь</option>
       <option value="2">Бендеры</option>
@@ -80,9 +81,13 @@ if ($_SESSION['user']['groupid'] != 3) {
       <option value="40">оик32</option>
       <option value="41">оик33</option>
       </select>
-      <select name="NumKom" id="NumKom"><option value="">Выберите округ</option></select>
-      <input type="date" id="termDateVidv" style="margin-left:645px;width:130px">
-      <input type="date" id="termDateReg" style="margin-left:10px;width:160px">
+   <select name="NumKom" id="NumKom"><option value="">Выберите округ</option></select>
+   <label>По дате выдвижения</label>
+   <input type="date" id="termDateVidv">
+   <!-- <label>По дате регистрации</label>
+   <input type="date" id="termDateReg"> -->
+   <input type="submit" value="Сбросить фильтр">
+   </form>
   </div>
   <div id="tb2">
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="fileList()">Список файлов</a>
@@ -104,7 +109,7 @@ if ($_SESSION['user']['groupid'] != 3) {
 
 
  
- <h3 class="info">Телефон тех. поддержки 077835290(Иван)</h3>
- <script type="text/javascript" src="assets/js/script.js"></script>
+ <h3 class="info">Телефон тех. поддержки 0(778)3-52-90 (Иван)</h3>
+ <script type="text/javascript" src="assets/js/scriptadmin.js"></script>
 </body>
 </html>

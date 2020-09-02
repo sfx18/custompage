@@ -38,6 +38,7 @@ if ($_SESSION['user']['groupid'] != 1) {
   <div id="tb">
    <input id="term" placeholder="Ввод">
    <a href="javascript:void(0);" class="easyui-linkbutton" plain="true" onclick="doSearch()">Поиск</a>
+   <a href="javascript:void(0);" class="easyui-linkbutton" plain="true" onclick="doSearchClear()">Очистить</a>
   </div>
   <div id="tb2">
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Новый</a>
@@ -160,7 +161,7 @@ if ($_SESSION['user']['groupid'] != 1) {
   <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgRegistration').dialog('close');" style="width:90px;">Отмена</a>
  </div>
 
- <h3 class="info">Телефон тех. поддержки 077835290(Иван)</h3>
+ <h3 class="info">Телефон тех. поддержки 0(778)3-52-90 (Иван)</h3>
  <script type="text/javascript" src="assets/js/script.js"></script>
 </body>
 </html>

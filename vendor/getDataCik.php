@@ -5,18 +5,81 @@ $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 $rows = isset($_POST['rows']) ? intval($_POST['rows']) : 15; 
 $login = $_SESSION['user']['login'];
 $groupid = $_SESSION['user']['groupid'];
+$searchTerm = '';
+$searchTerm2 = '';
+$searchTerm3 = '';
 
-$searchTerm = isset($_POST['term']) ? mysqli_real_escape_string($connect, $_POST['term']) : '';
-$searchTerm2 = isset($_POST['term2']) ? mysqli_real_escape_string($connect, $_POST['term2']) : '';
-// $searchTerm3 = isset($_POST['term2']) ? mysqli_real_escape_string($connect, $_POST['term2']) : '';
-// $searchTerm3 = isset($_POST['termDateVidv']) ? $_POST['termDateVidv'] : '';
-// $searchTermDateReg = isset($_POST['termDateReg']) ? mysqli_real_escape_string($connect, $_POST['termDateReg']) : '';
-// $searchTerm3 = $_POST['termDateVidv'];
+   $searchTerm = isset($_POST['term']) ? mysqli_real_escape_string($connect, $_POST['term']) : '';
+   $searchTerm2 = isset($_POST['term2']) ? mysqli_real_escape_string($connect, $_POST['term2']) : '';
+   $searchTerm3 = isset($_POST['termDateVidv']) ? $_POST['termDateVidv'] : '';
+   $searchTerm4 = isset($_POST['termDateReg']) ? $_POST['termDateReg'] : '';
+
 $offset = ($page-1)*$rows; 
-$result = array(); 
- 
-$whereSQL = "OkrBC LIKE '$searchTerm%' AND NumOkr LIKE '$searchTerm2%'";
-// $whereSQL2 = "DateVidv = '$searchTerm3'";
+$result = array();
+
+// ФИЛЬТРАЦИЯ ПО РАЙОНУ, ОКРУГУ И ДАТЕ ВЫДВИЖЕНИЯ
+if(isset($_POST['term']) && isset($_POST['term2'])){
+   if(isset($_POST['termDateVidv'])){
+      $whereSQL = "OkrBC LIKE '$searchTerm%' AND NumOkr LIKE '$searchTerm2%' AND DateVidv = '$searchTerm3'";
+   }else{
+      $whereSQL = "OkrBC LIKE '$searchTerm%' AND NumOkr LIKE '$searchTerm2%'";
+   }  
+}// ФИЛЬТРАЦИЯ ПО РАЙОНУ И ДАТЕ ВЫДВИЖЕНИЯ
+elseif(isset($_POST['term']) && isset($_POST['termDateVidv'])){
+   $whereSQL = "OkrBC LIKE '$searchTerm%' AND DateVidv = '$searchTerm3'";
+}// ФИЛЬТРАЦИЯ ПО ДАТЕ ВЫДВИЖЕНИЯ
+elseif(!isset($_POST['term']) && !isset($_POST['term2']) && isset($_POST['termDateVidv'])){
+   $whereSQL = "DateVidv = '$searchTerm3'";
+}else{
+   $whereSQL = "OkrBC LIKE '$searchTerm%' AND NumOkr LIKE '$searchTerm2%'";
+}
+
+
+
+
+// ФИЛЬТРАЦИЯ ПО РАЙОНУ, ОКРУГУ И ДАТЕ ВЫДВИЖЕНИЯ
+
+// if(isset($_POST['term']) && isset($_POST['term2'])){
+//    if(isset($_POST['termDateVidv'])){
+//       $whereSQL = "OkrBC LIKE '$searchTerm%' AND NumOkr LIKE '$searchTerm2%' AND DateVidv = '$searchTerm3'";
+//    }else{
+//       $whereSQL = "OkrBC LIKE '$searchTerm%' AND NumOkr LIKE '$searchTerm2%'";
+//    }
+//    if(isset($_POST['termDateReg'])){
+//       $whereSQL = "OkrBC LIKE '$searchTerm%' AND NumOkr LIKE '$searchTerm2%' AND DateReg = '$searchTerm4'";
+//    }else{
+//       $whereSQL = "OkrBC LIKE '$searchTerm%' AND NumOkr LIKE '$searchTerm2%'";
+//    }   
+// }// ФИЛЬТРАЦИЯ ПО РАЙОНУ И ДАТЕ ВЫДВИЖЕНИЯ
+// elseif(isset($_POST['term'])){
+//    $whereSQL = "OkrBC LIKE '$searchTerm%'";
+//    if(isset($_POST['termDateVidv'])){
+//       $whereSQL = "OkrBC LIKE '$searchTerm%' AND DateVidv = '$searchTerm3'";
+//    }
+//    if(isset($_POST['termDateReg'])){
+//       $whereSQL = "OkrBC LIKE '$searchTerm%' AND DateReg = '$searchTerm4'";
+//    }
+   
+// }// ФИЛЬТРАЦИЯ ПО ДАТЕ ВЫДВИЖЕНИЯ
+// elseif(!isset($_POST['term']) && !isset($_POST['term2'])){
+//    if(isset($_POST['termDateVidv'])){
+//       $whereSQL = "DateVidv = '$searchTerm3'";
+//    }else{
+//       $whereSQL = "OkrBC LIKE '$searchTerm%' AND NumOkr LIKE '$searchTerm2%'";
+//    }
+//    if(isset($_POST['termDateReg'])){
+//       $whereSQL = "DateReg = '$searchTerm4'";
+//    }else{
+//       $whereSQL = "OkrBC LIKE '$searchTerm%' AND NumOkr LIKE '$searchTerm2%'";
+//    }
+   
+// }else{
+//    $whereSQL = "OkrBC LIKE '$searchTerm%' AND NumOkr LIKE '$searchTerm2%'";
+// }
+
+
+
+
 
 $result = mysqli_query($connect, "SELECT COUNT(*) FROM kandidat WHERE $whereSQL"); 
 $row = mysqli_fetch_row($result); 

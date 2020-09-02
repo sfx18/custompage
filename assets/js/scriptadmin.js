@@ -1,3 +1,5 @@
+var selectRaion,selectNumKom,termDateVidv,termDateReg;
+
 function upload(file) {
 
     var xhr = new XMLHttpRequest();
@@ -26,70 +28,87 @@ function upload(file) {
 
 
 
-jQuery(document).ready(function(){
+  jQuery('#raion').change(function () {
+    selectNumKom = '';
+    selectRaion = jQuery('#raion option:selected').val();
+    if (selectRaion == 0) {
+        selectRaion = '';
+    } else {
+        selectRaion = jQuery('#raion option:selected').text();
+    }
+    jQuery('#dg').datagrid('load', {
+        term: selectRaion,
+    });
 
-    
-
-
-
-
-    jQuery('#raion').change(function(){
-        var selectRaion = jQuery('#raion option:selected').text();
-        if(selectRaion == 'Выберите ТИК'){
-            selectRaion = '';
-        }else{
-            selectRaion = jQuery('#raion option:selected').text();
+    if (selectRaion) {
+        jQuery.ajax({
+            url: "vendor/selectData.php",
+            method: "POST",
+            data: { uRaionId: selectRaion },
+            dataType: "html",
+            success: function (data) {
+                jQuery('#NumKom').html(data);
+            }
+        })
+    } else {
+        jQuery('#NumKom').html('<option value="0">Выберите округ</option>');
+        document.getElementById('termDateVidv').value = "";
+        // document.getElementById('termDateReg').value = "";
+    }
+});
+    jQuery('#NumKom').change(function () {
+        document.getElementById('termDateVidv').value = "";
+        // document.getElementById('termDateReg').value = "";
+        selectNumKom = jQuery('#NumKom option:selected').val();
+        if (selectNumKom == 0) {
+            selectNumKom = '';
+        } else {
+            selectNumKom = jQuery('#NumKom option:selected').text();
         }
         jQuery('#dg').datagrid('load', {
-        term: selectRaion
+            term: selectRaion,
+            term2: selectNumKom,
         });
-        
-        if(selectRaion){
-            jQuery.ajax({
-                url:"vendor/selectData.php",
-                method:"POST",
-                data:{uRaionId:selectRaion},
-                dataType:"html",
-                success:function(data){
-                    jQuery('#NumKom').html(data);
-                    // jQuery('#NumKom').change(function(){
-                    //     var selectNumKom = jQuery('#NumKom option:selected').text();
-                    //                 if(selectNumKom == 'Выберите ТИК'){
-                    //                     selectNumKom = '';
-                    //                 }else{
-                    //                     selectNumKom = jQuery('#NumKom option:selected').text();
-                    //                 }
-                    //                 jQuery('#dg').datagrid('load', {
-                    //                 term: selectNumKom
-                    //                 });
-                    // });
-                }
-            })
-        }else{
-            jQuery('#NumKom').html('');
+        if(!selectNumKom){
+                document.getElementById('termDateVidv').value = "";
+                // document.getElementById('termDateReg').value = "";
         }
-        
-       
-    });
-    jQuery('#NumKom').change(function(){
-        var selectNumKom = jQuery('#NumKom option:selected').text();
-                    if(selectNumKom == 'Выберите ТИК'){
-                        selectNumKom = '';
-                    }else{
-                        selectNumKom = jQuery('#NumKom option:selected').text();
-                    }
-                    jQuery('#dg').datagrid('load', {
-                    term: selectNumKom
-                    });
+    
     });
 
+
+    jQuery('#termDateVidv').change(function () {
+        termDateVidv = jQuery('#termDateVidv').val();
+        // alert(termDateVidv);
+        jQuery('#dg').datagrid('load', {
+            term: selectRaion,
+            term2: selectNumKom,
+            termDateVidv: termDateVidv,
+        });
     
+    });
+    // jQuery('#termDateReg').change(function () {
+    //     termDateReg = jQuery('#termDateReg').val();
+    //     // alert(termDateReg);
+    //     jQuery('#dg').datagrid('load', {
+    //         term: selectRaion,
+    //         term2: selectNumKom,
+    //         termDateReg: termDateReg,
+    //     });
     
-});
+    // });
+    // jQuery('#filter').onSubmit(function(){
+    //     this.reset();
+    // });
+    
+
 
 function doSearch(){
     jQuery('#dg').datagrid('load', {
-    term: jQuery('#term').val()
+        term: $('#term').val(),
+        term2: $('#term2').val(),
+        termDateVidv: $('#termDateVidv').val(),
+        termDateReg: $('#termDateReg').val()
     });
 }
     
@@ -220,6 +239,31 @@ function saveUser(){
 });
 }
 
+function saveCheck(){
+    jQuery('#fmCheck').form('submit',{
+    url: url,
+    onSubmit: function(){
+    return jQuery(this).form('validate');
+    },
+    success: function(response){
+    var respData = jQuery.parseJSON(response);
+    if(respData.status == 0){
+        jQuery.messager.show({
+            title: 'Ошибка',
+            msg: respData.msg
+        });
+    }else{
+        jQuery.messager.show({
+            title: 'Оповещение',
+            msg: respData.msg
+        });
+        jQuery('#dlgCheck').dialog('close');
+        jQuery('#dg').datagrid('reload');
+    }
+}
+});
+}
+
 
 function destroyUser(){
     var row = jQuery('#dg').datagrid('getSelected');
@@ -249,4 +293,22 @@ function registration(){
             jQuery('#fmRegistration').form('load',row);
             url = 'vendor/uploadFile.php?id='+row.id;
         }else{alert('Выберите строку!')}
+}
+// function isCheckDateVidv(){  
+//         var row = jQuery('#dg').datagrid('getSelected');
+//         if (row){
+//             // alert(row.id);
+//             jQuery('#dg').datagrid('reload');
+//             url = 'vendor/checkDateVidv.php?id='+row.id;
+//         }else{alert('Выберите строку!')}
+// }
+
+function isCheckDateVidv(){
+    var row = jQuery('#dg').datagrid('getSelected');
+    if (row){
+        //jQuery('#dlgCheck').dialog('open').dialog('center').dialog('setTitle','Изменить');
+        jQuery('#fmCheck').form('load',row);
+        url = 'vendor/checkDateVidv.php?id='+row.id;
+        saveCheck();
+    }else{alert('Выберите строку!')}
 }

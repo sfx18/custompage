@@ -1,72 +1,4 @@
 var selectRaion,selectNumKom,termDateVidv;
-jQuery('#raion').change(function () {
-    
-    selectRaion = jQuery('#raion option:selected').text();
-    if (selectRaion == 'Выберите ТИК') {
-        selectRaion = '';
-    } else {
-        selectRaion = jQuery('#raion option:selected').text();
-    }
-    jQuery('#dg').datagrid('load', {
-        term: selectRaion,
-    });
-
-    if (selectRaion) {
-        jQuery.ajax({
-            url: "vendor/selectData.php",
-            method: "POST",
-            data: { uRaionId: selectRaion },
-            dataType: "html",
-            success: function (data) {
-                jQuery('#NumKom').html(data);
-            }
-        })
-    } else {
-        jQuery('#NumKom').html('<option value="0">Выберите округ</option>');
-    }
-});
-jQuery('#NumKom').change(function () {
-    selectNumKom = jQuery('#NumKom option:selected').text();
-    if (selectNumKom == 'Выберите округ') {
-        selectNumKom = '';
-    } else {
-        selectNumKom = jQuery('#NumKom option:selected').text();
-    }
-    jQuery('#dg').datagrid('load', {
-        term: selectRaion,
-        term2: selectNumKom,
-    });
-
-});
-
-// jQuery('#termDateVidv').change(function () {
-//     termDateVidv = jQuery('#termDateVidv').val();
-//     alert(termDateVidv);
-//     jQuery('#dg').datagrid('load', {
-//         termDateVidv: termDateVidv
-//     });
-//     // if (termDateVidv == '0000-00-00') {
-//     //     termDateVidv = '';
-//     // } else {
-//     //     termDateVidv = jQuery('#termDateVidv').val();
-//     // }
-    
-//     // $.ajax({
-//     //     type: 'POST',
-//     //     url: 'vendor/getData.php',
-//     //     dataType: 'html',
-//     //     data: { NumOkrText: selectNumKom },
-//     //     success: function (data) {
-//     //         jQuery('#dg').datagrid('load', {
-//     //             term: selectRaion,
-//     //             term2: selectNumKom,
-//     //             termDateVidv: termDateVidv
-//     //         });
-//     //     }
-//     // });
-
-// });
-
 
 function upload(file, path) {
 
@@ -98,9 +30,12 @@ function upload(file, path) {
 function doSearch() {
     $('#dg').datagrid('load', {
         term: $('#term').val(),
-        term2: $('#term2').val(),
-        // termDateVidv: $('#termDateVidv').val(),
-        // termDateReg: $('#termDateReg').val()
+    });
+}
+
+function doSearchClear() {
+    document.getElementById('term').value = '';
+    $('#dg').datagrid('reload', {
     });
 }
 
