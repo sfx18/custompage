@@ -46,7 +46,7 @@ if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( 
         if($insert){
             $response['check'] = 'Запись успешно добавлена в бд';
             $response['msg'] = 'Кандидат успешно добавлен';
-            file_put_contents('/var/www/site/custompage/logs/addDatalog.txt', $path.'___DataAdd:'.date('Y-m-d_H-i-s', strtotime("+3 hours")).'___DateVidv:'.$DateVidv.';', $flags = FILE_APPEND);
+            file_put_contents('/var/www/site/custompage/logs/addDatalog.txt', $path.'___Дата/время добавления: '.date('Y-m-d_H-i-s', strtotime("+3 hours")).'___Дата выдвижения: '.$DateVidv.';', $flags = FILE_APPEND);
             file_put_contents('/var/www/site/custompage/logs/addDataFilelog.txt', $response['path'].';', $flags = FILE_APPEND);
         }else{
             $response['check'] = 'Ошибка добавления записи в бд';

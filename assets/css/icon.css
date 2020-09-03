@@ -1,3 +1,12 @@
+.icon-list{
+	background:url('icons/list.png') no-repeat center center;
+}
+.icon-download{
+	background:url('icons/downloading-updates.png') no-repeat center center;
+}
+.icon-reg{
+	background:url('icons/reg.png') no-repeat center center;
+ }
 .icon-blank{
 	background:url('icons/blank.gif') no-repeat center center;
 }

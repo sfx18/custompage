@@ -42,9 +42,9 @@ if ($_SESSION['user']['groupid'] != 1) {
   </div>
   <div id="tb2">
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Новый</a>
-   <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="uploadImg()">Загрузить материалы</a>
-   <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="fileList()">Список файлов</a>
-   <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="registration()">Зарегистрировать кандидата</a>
+   <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-download" plain="true" onclick="uploadImg()">Загрузить материалы</a>
+   <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-list" plain="true" onclick="fileList()">Список файлов</a>
+   <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-reg" plain="true" onclick="registration()">Зарегистрировать кандидата</a>
   </div>
  </div>
 
