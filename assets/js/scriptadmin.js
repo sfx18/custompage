@@ -87,16 +87,16 @@ function upload(file) {
         });
     
     });
-    // jQuery('#termDateReg').change(function () {
-    //     termDateReg = jQuery('#termDateReg').val();
-    //     // alert(termDateReg);
-    //     jQuery('#dg').datagrid('load', {
-    //         term: selectRaion,
-    //         term2: selectNumKom,
-    //         termDateReg: termDateReg,
-    //     });
+    jQuery('#termDateReg').change(function () {
+        termDateReg = jQuery('#termDateReg').val();
+        // alert(termDateReg);
+        jQuery('#dg').datagrid('load', {
+            term: selectRaion,
+            term2: selectNumKom,
+            termDateReg: termDateReg,
+        });
     
-    // });
+    });
     // jQuery('#filter').onSubmit(function(){
     //     this.reset();
     // });
@@ -294,14 +294,6 @@ function registration(){
             url = 'vendor/uploadFile.php?id='+row.id;
         }else{alert('Выберите строку!')}
 }
-// function isCheckDateVidv(){  
-//         var row = jQuery('#dg').datagrid('getSelected');
-//         if (row){
-//             // alert(row.id);
-//             jQuery('#dg').datagrid('reload');
-//             url = 'vendor/checkDateVidv.php?id='+row.id;
-//         }else{alert('Выберите строку!')}
-// }
 
 function isCheckDateVidv(){
     var row = jQuery('#dg').datagrid('getSelected');

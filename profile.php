@@ -38,7 +38,7 @@ if ($_SESSION['user']['groupid'] != 3) {
   <div id="tb" style="padding-left:7px;padding-top:7px;">
   <form id="filter">
   <select name="raion" id="raion">
-      <option value="0">Выберите ТИК</option>
+      <option value="0">Выберите ОИК/ТИК</option>
       <option value="1">Тирасполь</option>
       <option value="2">Бендеры</option>
       <option value="3">Слободзея</option>
@@ -84,8 +84,8 @@ if ($_SESSION['user']['groupid'] != 3) {
    <select name="NumKom" id="NumKom"><option value="">Выберите округ</option></select>
    <label>По дате выдвижения</label>
    <input type="date" id="termDateVidv">
-   <!-- <label>По дате регистрации</label>
-   <input type="date" id="termDateReg"> -->
+   <label>По дате регистрации</label>
+   <input type="date" id="termDateReg">
    <input type="submit" value="Сбросить фильтр">
    </form>
   </div>

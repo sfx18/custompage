@@ -83,12 +83,13 @@ if ($_SESSION['user']['groupid'] != 4) {
       <option value="39">оик31</option>
       <option value="40">оик32</option>
       <option value="41">оик33</option>
+      <option value="42">adm</option>
       </select>
    <select name="NumKom" id="NumKom"><option value="">Выберите округ</option></select>
    <label>По дате выдвижения</label>
    <input type="date" id="termDateVidv">
-   <!-- <label>По дате регистрации</label>
-   <input type="date" id="termDateReg"> -->
+   <label>По дате регистрации</label>
+   <input type="date" id="termDateReg">
    <input type="submit" value="Сбросить фильтр">
    </form>
   </div>
@@ -111,7 +112,7 @@ if ($_SESSION['user']['groupid'] != 4) {
   <form id="fm" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
    <h3>Информация</h3>
    <div style="margin-bottom:10px">
-    <input name="OkrBC" class="easyui-textbox" required="false" readonly="readonly" label="ОИК/ТИК:" style="width:100%">
+    <input name="OkrBC" class="easyui-textbox" readonly="readonly" label="ОИК/ТИК:" style="width:100%">
    </div>
    <div style="margin-bottom:10px">
     <input name="last_name" class="easyui-textbox" required="true" label="Фамилия:" style="width:100%">
