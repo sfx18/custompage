@@ -8,8 +8,8 @@ $response = array(
     'check' => 'Default'
 ); 
 if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( $_REQUEST['father_name']) && !empty($_REQUEST['birthday']) && !empty($_REQUEST['DateVidv'])){ 
-    $first_name = $_REQUEST['first_name']; 
-    $last_name = $_REQUEST['last_name']; 
+    $first_name = $_REQUEST['first_name'];
+    $last_name = $_REQUEST['last_name'];
     $father_name = $_REQUEST['father_name']; 
     $birthday = $_REQUEST['birthday'];
     $DateVidv = $_REQUEST['DateVidv'];
@@ -41,6 +41,9 @@ if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( 
     
     $response = uploadFile($path);
     if($response['status']){ 
+        $first_name = mb_strtoupper($first_name);
+        $last_name = mb_strtoupper($last_name);
+        $father_name = mb_strtoupper($father_name);
         $sql = "INSERT INTO `kandidat` (`first_name`,`last_name`,`father_name`,`birthday`,`DateVidv`, `DateReg`, `OkrBC`,`NumOkr`,`path`) VALUES ('$first_name','$last_name','$father_name','$birthday', '$DateVidv', '$DateReg', '$login','$NumOkr', '$path')"; 
         $insert = mysqli_query($connect,$sql);
         if($insert){

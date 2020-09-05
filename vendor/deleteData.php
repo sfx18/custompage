@@ -17,8 +17,6 @@ $response = array(
         $sql = "DELETE FROM kandidat WHERE id = $id"; 
         $delete = $connect->query($sql); 
 
-        delDir($pathscr);
-        
         if($delete && delDir($pathsrc)){ 
             $response['status'] = 1; 
             $response['msg'] = 'Данные были успешно удалены.'; 
