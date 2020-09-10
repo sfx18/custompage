@@ -23,7 +23,7 @@ if ($_SESSION['user']['groupid'] != 3) {
   <thead>
    <tr>
      <th field="OkrBC" width="30">ОИК/ТИК</th>
-     <th field="NumOkr" width="15">Округ</th>
+     <th field="NumOkr" width="30">Округ</th>
      <th field="last_name" width="50">Фамилия</th>
      <th field="first_name" width="50">Имя</th>
      <th field="father_name" width="50">Отчество</th>

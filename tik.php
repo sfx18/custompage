@@ -69,6 +69,7 @@ if ($_SESSION['user']['groupid'] != 2) {
    </div>
    <div style="margin-bottom:50px">
     <input name="NumOkr" class="easyui-textbox" required="true" label="№ Округа:" style="width:100%">
+    <label>Если кандидат по единому округу - пишем название населенного пункта, например: Катериновка.<br>Если что-то непонятно, звонить по номеру:<br>778 3-52-90 (Иван).</label>
    </div>
    
 
