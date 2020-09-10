@@ -117,7 +117,7 @@ function newUser(){
     jQuery('#fileInputNewUser').html('<input type="file" id ="avatar" name="avatar" accept=".docx, .doc" required="true" style="width:100%">');
     jQuery('#dlg').dialog('open').dialog('center').dialog('setTitle','Новый кандидат');
     jQuery('#fm').form('clear');
-    url = 'vendor/addData.php';
+    url = 'vendor/addAdminData.php';
 }
 function editUser(){
     jQuery('#fileInputNewUser').html('');

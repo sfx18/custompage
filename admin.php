@@ -1,4 +1,7 @@
 <?php
+$page = $_SERVER['PHP_SELF'];
+$sec = "60";
+header("Refresh: $sec; url=$page");
 session_start();
 require_once 'vendor/connect.php';
 if ($_SESSION['user']['groupid'] != 4) {
@@ -15,11 +18,11 @@ if ($_SESSION['user']['groupid'] != 4) {
     <link rel="stylesheet" type="text/css" href="assets/css/demo.css">
     <link rel="stylesheet" type="text/css" href="assets/css/easyui.css">
     <script type="text/javascript" src="assets/js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="assets/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="assets/js/jqueryadmin.easyui.min.js"></script>
 </head>
 <body>
     <h2 class="logout"><a href="vendor/logout.php">Выйти</a></h2>
-    <table id="dg" title="Список кандидатов" class="easyui-datagrid" url="vendor/getDataCik.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" style="width:100%;height:750px;">
+    <table id="dg" title="Список кандидатов" class="easyui-datagrid" url="vendor/getDataAdmin.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" style="width:100%;height:750px;">
   <thead>
    <tr>
      <th field="OkrBC" width="20">ОИК/ТИК</th>
