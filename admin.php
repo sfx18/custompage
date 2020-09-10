@@ -26,7 +26,7 @@ if ($_SESSION['user']['groupid'] != 4) {
   <thead>
    <tr>
      <th field="OkrBC" width="20">ОИК/ТИК</th>
-     <th field="NumOkr" width="10">Округ</th>
+     <th field="NumOkr" width="30">Округ</th>
      <th field="last_name" width="30">Фамилия</th>
      <th field="first_name" width="30">Имя</th>
      <th field="father_name" width="30">Отчество</th>

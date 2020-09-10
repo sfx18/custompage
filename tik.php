@@ -24,7 +24,7 @@ if ($_SESSION['user']['groupid'] != 2) {
     <table id="dg" title="Список кандидатов" class="easyui-datagrid" url="vendor/getData.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" style="width:100%;height:487px;">
   <thead>
    <tr>
-    <th field="NumOkr" width="20">Округ</th>
+    <th field="NumOkr" width="30">Округ</th>
      <th field="last_name" width="50">Фамилия</th>
      <th field="first_name" width="50">Имя</th>
      <th field="father_name" width="50">Отчество</th>

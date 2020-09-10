@@ -18,7 +18,7 @@ $result = mysqli_query($connect, "SELECT * FROM (SELECT *, date_format(birthday,
   
 $users = array(); 
    while($row = mysqli_fetch_assoc($result)){ 
-      if($row['NumOkr'] == 0){
+      if($row['NumOkr'] == '0'){
          $row['NumOkr'] = '';
       }
       if($row['DateReg'] == "0000-00-00"){
