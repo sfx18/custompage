@@ -22,7 +22,6 @@ if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( 
     $permit = 0777;
 
     if(!empty($_REQUEST['NumOkr'])){
-        // $pathForWindows = "\\16.16.16.180\\kandidat\\$login\\$NumOkr\\$folder_name";
         $path = "/var/kandidat/$login/$NumOkr/$folder_name";
         if(!file_exists("/var/kandidat/$login/$NumOkr")){
             mkdir("/var/kandidat/$login/$NumOkr");
@@ -33,7 +32,7 @@ if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( 
             chmod("/var/kandidat/$login/$NumOkr/$folder_name", $permit);
         }
     }else{
-        // $pathForWindows = "\\"."\\"."16.16.16.180"."\\"."kandidat"."\\"."$login"."\\"."$folder_name";
+            $NumOkr = '0';
             $path = "/var/kandidat/$login/$folder_name";
             if(!file_exists("/var/kandidat/$login/$folder_name")){
                 mkdir("/var/kandidat/$login/$folder_name");
@@ -50,37 +49,6 @@ if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( 
         $sql = "INSERT INTO `kandidat` (`first_name`,`last_name`,`father_name`,`birthday`,`DateVidv`, `DateReg`, `OkrBC`,`NumOkr`,`path`) VALUES ('$first_name','$last_name','$father_name','$birthday', '$DateVidv', '$DateReg', '$login','$NumOkr', '$path')"; 
         $insert = mysqli_query($connect,$sql);
         if($insert){
-            
-                // Токен бота и идентификатор чата
-$token='1386744179:AAFVxfaHZcKPVUT0xhi6Z6wpvKG3OSXfxoU';
-$chat_id='540095914';
-$text='Привет!';
-file_get_contents("https://api.telegram.org/bot$token/sendMessage?chat_id=$chat_id&text=$text");
-// сюда нужно вписать токен вашего бота
-
-// $text = 'Привет мир'; 
-// // Отправить сообщение
-// $ch=curl_init();
-// curl_setopt($ch, CURLOPT_URL,
-//        'https://api.telegram.org/bot'.$token.'/sendMessage?');
-// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-// curl_setopt($ch, CURLOPT_HEADER, false);
-// curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-// curl_setopt($ch, CURLOPT_POST, true);
-// curl_setopt($ch, CURLOPT_POSTFIELDS,
-//        'chat_id='.$chat_id.'&text='.urlencode($text));
-// curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
- 
-// // // Настройки прокси, если это необходимо
-// // $proxy='111.222.222.111:8080';
-// // $auth='login:password';
-// // curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
-// // curl_setopt($ch, CURLOPT_PROXY, $proxy);
-// // curl_setopt($ch, CURLOPT_PROXYUSERPWD, $auth);
- 
-// // Отправить сообщение
-// curl_exec($ch);
-// curl_close($ch);
             $response['check'] = 'Запись успешно добавлена в бд';
             $response['msg'] = 'Кандидат успешно добавлен';
             // file_put_contents('/var/www/site/custompage/logs/addDatalog.txt', $path.'___Дата/время добавления: '.date('Y-m-d_H-i-s', strtotime("+3 hours")).'___Дата выдвижения: '.$DateVidv.';', $flags = FILE_APPEND);

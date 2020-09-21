@@ -31,6 +31,7 @@ if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( 
             chmod("/var/kandidat/$login/$NumOkr/$folder_name", $permit);
         }
     }else{
+            $NumOkr = '0';
             $path = "/var/kandidat/$login/$folder_name";
             if(!file_exists("/var/kandidat/$login/$folder_name")){
                 mkdir("/var/kandidat/$login/$folder_name");
