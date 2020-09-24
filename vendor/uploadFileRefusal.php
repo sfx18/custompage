@@ -15,20 +15,20 @@ $response = array(
         $row = mysqli_fetch_assoc($select);
         $pathsrc = $row['path'];
         
-        $DateReg = $_REQUEST['DateReg'];
+        $DateRegRefusal = $_REQUEST['DateRegRefusal'];
 
         //загрузка файла по пути из БД
         $response = uploadFile($pathsrc);
         if($response['status']){ 
-            $sql = "UPDATE kandidat SET DateReg='$DateReg' WHERE id = $id";  
+            $sql = "UPDATE kandidat SET DateRegRefusal='$DateRegRefusal' WHERE id = $id";  
             $update = mysqli_query($connect,$sql);
             if($update){
             $response['check'] = 'Запись в бд успешно добавлена';
-            $response['msg'] = 'Кандидат успешно зарегистрирован';
-            file_put_contents('/var/www/site/custompage/logs/DateReglog.txt', $response['path'].'Дата регистрации: '.$DateReg.';', $flags = FILE_APPEND);
+            $response['msg'] = 'В регистрации отказано';
+            file_put_contents('/var/www/site/custompage/logs/DateRegRefusallog.txt', 'Время и дата изменения строки: '.date('Y-m-d_H-i-s').' Путь: '.$response['path'].'Дата отказа в регистрации: '.$DateRegRefusal.';', $flags = FILE_APPEND);
             }else{
                 $response['check'] = 'Ошибка добавления записи в бд';
-                $response['msg'] = 'Ошибка регистрации кандидата';
+                $response['msg'] = 'Ошибка отказа в регистрации';
             }
         }
                   

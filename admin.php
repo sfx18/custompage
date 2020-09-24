@@ -33,7 +33,8 @@ if ($_SESSION['user']['groupid'] != 4) {
      <th field="birthday2" width="30">Дата</br>рождения</th>
      <th field="DateVidv2" width="30">Дата</br>выдвижения</th>
      <th field="checkDateVidv" width="10">Отчет</br> о Д.В.</th>
-     <th field="DateReg2" width="30">Дата</br>регистрации</th>
+     <th field="DateReg2" width="20">Дата</br>регистрации</th>
+     <th field="DateRegRefusal2" width="20">Дата отказа </br>в регистрации</th>
      <th field="checkDateReg" width="10">Отчет</br> о Д.Р.</th>
      <th field="path" width="50">Путь</th>
 
@@ -103,7 +104,9 @@ if ($_SESSION['user']['groupid'] != 4) {
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-download" plain="true" onclick="uploadImg()">Загрузить материалы</a>
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-list" plain="true" onclick="fileList()">Список файлов</a>
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-reg" plain="true" onclick="registration()">Зарегистрировать кандидата</a>
+   <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-del" plain="true" onclick="registrationRefusal()">Отказ в регистрации</a>
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="isCheckDateVidv()">Отметить о Д.В.</a>
+   <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="isCheckDateReg()">Отметить о Д.Р.</a>
    
    <!-- <a href="javascript:void(0);" class="easyui-linkbutton" plain="true" onclick="doSearchRaion()">Поиск</a> -->
   </div>
@@ -224,6 +227,39 @@ if ($_SESSION['user']['groupid'] != 4) {
   <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgRegistration').dialog('close');" style="width:90px;">Отмена</a>
  </div>
 
+ <!-- ФОРМА ОТКАЗА В РЕГИСТРАЦИИ -->
+
+ <div id="dlgRegistrationRefusal" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons-registration-refusal'">
+<form id="fmRegistrationRefusal" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
+<h3>Отказ в регистрации</h3>
+   <div style="margin-bottom:10px">
+    <input name="last_name" class="easyui-textbox" readonly="readonly" label="Фамилия:" style="width:100%">
+   </div>
+   <div style="margin-bottom:10px">
+    <input name="first_name" class="easyui-textbox" readonly="readonly" label="Имя:" style="width:100%">
+   </div>
+   <div style="margin-bottom:10px">
+    <input name="father_name" class="easyui-textbox" readonly="readonly" label="Отчество:" style="width:100%">
+   </div>
+   <div style="margin-bottom:50px">
+    <input type="date" name="birthday" class="easyui-textbox" readonly="readonly" label="Дата рождения:" style="width:100%">
+   </div>
+   <div id="fileInputUploadFileRefusal" style="margin-bottom:10px">
+    </div> 
+    <div style="margin-bottom:20px">
+    <input type="date" name="DateRegRefusal" class="easyui-textbox" required="true" label="Дата отказа в регистрации:" style="width:100%">
+   </div>
+   <div class="progress">
+      </div>
+</form>
+</div>
+<div id="dlg-buttons-registration-refusal">
+  <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveFileRefusal()" style="width:90px;text-align:center;">Сохранить</a>
+  <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgRegistrationRefusal').dialog('close');" style="width:90px;">Отмена</a>
+ </div>
+
+ <!-- ВСПОМОГАТЕЛЬНАЯ ФОРМА ДЛЯ ОТМЕТКИ ОТЧЕТНОСТИ -->
+
  <div id="dlgCheck" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons-check'">
 <form id="fmCheck" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
 <h3>Отметка кандидата</h3>
@@ -235,6 +271,22 @@ if ($_SESSION['user']['groupid'] != 4) {
 <div id="dlg-buttons-check">
   <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCheck()" style="width:90px;text-align:center;">Ок</a>
   <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCheck').dialog('close');" style="width:90px;">Отмена</a>
+ </div>
+
+
+ <!-- ВСПОМОГАТЕЛЬНАЯ ФОРМА ДЛЯ ОТМЕТКИ ОТЧЕТНОСТИ -->
+
+ <div id="dlgCheckReg" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons-check-reg'">
+<form id="fmCheckReg" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
+<h3>Отметка кандидата</h3>
+<div style="margin-bottom:10px">
+    <input id = "checkDateReg" name="checkDateReg" class="easyui-textbox" label="Отметка:" style="width:100%">
+   </div>
+</form>
+</div>
+<div id="dlg-buttons-check-reg">
+  <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCheck()" style="width:90px;text-align:center;">Ок</a>
+  <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCheckReg').dialog('close');" style="width:90px;">Отмена</a>
  </div>
 
  <h3 class="info">Телефон тех. поддержки 077835290</h3>

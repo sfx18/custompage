@@ -27,9 +27,10 @@ if ($_SESSION['user']['groupid'] != 3) {
      <th field="last_name" width="50">Фамилия</th>
      <th field="first_name" width="50">Имя</th>
      <th field="father_name" width="50">Отчество</th>
-     <th field="birthday2" width="30">Дата</br>рождения</th>
-     <th field="DateVidv2" width="30">Дата</br>выдвижения</th>
-     <th field="DateReg2" width="50">Дата</br>регистрации</th>
+     <th field="birthday2" width="25">Дата</br>рождения</th>
+     <th field="DateVidv2" width="25">Дата</br>выдвижения</th>
+     <th field="DateReg2" width="25">Дата</br>регистрации</th>
+     <th field="DateRegRefusal2" width="25">Дата отказа </br>в регистрации</th>
 
    </tr>
   </thead>

@@ -28,9 +28,11 @@ if ($_SESSION['user']['groupid'] != 2) {
      <th field="last_name" width="50">Фамилия</th>
      <th field="first_name" width="50">Имя</th>
      <th field="father_name" width="50">Отчество</th>
-     <th field="birthday2" width="50">Дата</br>рождения</th>
-     <th field="DateVidv2" width="30">Дата</br>выдвижения</th>
-     <th field="DateReg2" width="50">Дата</br>регистрации</th>
+     <th field="birthday2" width="25">Дата</br>рождения</th>
+     <th field="DateVidv2" width="25">Дата</br>выдвижения</th>
+     <th field="DateReg2" width="25">Дата</br>регистрации</th>
+     <th field="DateRegRefusal2" width="25">Дата отказа </br>в регистрации</th>
+     <!-- <th field="DateRevocation2" width="25">Дата отзыва</br>документов</th> -->
 
    </tr>
   </thead>
@@ -46,6 +48,8 @@ if ($_SESSION['user']['groupid'] != 2) {
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-download" plain="true" onclick="uploadImg()">Загрузить материалы</a>
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-list" plain="true" onclick="fileList()">Список файлов</a>
    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-reg" plain="true" onclick="registration()">Зарегистрировать кандидата</a>
+   <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-del" plain="true" onclick="registrationRefusal()">Отказ в регистрации</a>
+   <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-revocation" plain="true" onclick="revocation()">Отзыв документов</a> -->
   </div>
  </div>
 
@@ -166,6 +170,70 @@ if ($_SESSION['user']['groupid'] != 2) {
 <div id="dlg-buttons-registration">
   <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveFile()" style="width:90px;text-align:center;">Сохранить</a>
   <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgRegistration').dialog('close');" style="width:90px;">Отмена</a>
+ </div>
+
+
+ <!-- ФОРМА ОТКАЗА В РЕГИСТРАЦИИ -->
+
+ <div id="dlgRegistrationRefusal" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons-registration-refusal'">
+<form id="fmRegistrationRefusal" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
+<h3>Отказ в регистрации</h3>
+   <div style="margin-bottom:10px">
+    <input name="last_name" class="easyui-textbox" readonly="readonly" label="Фамилия:" style="width:100%">
+   </div>
+   <div style="margin-bottom:10px">
+    <input name="first_name" class="easyui-textbox" readonly="readonly" label="Имя:" style="width:100%">
+   </div>
+   <div style="margin-bottom:10px">
+    <input name="father_name" class="easyui-textbox" readonly="readonly" label="Отчество:" style="width:100%">
+   </div>
+   <div style="margin-bottom:50px">
+    <input type="date" name="birthday" class="easyui-textbox" readonly="readonly" label="Дата рождения:" style="width:100%">
+   </div>
+   <div id="fileInputUploadFileRefusal" style="margin-bottom:10px">
+    </div> 
+    <div style="margin-bottom:20px">
+    <input type="date" name="DateRegRefusal" class="easyui-textbox" required="true" label="Дата отказа в регистрации:" style="width:100%">
+   </div>
+   <div class="progress">
+      </div>
+</form>
+</div>
+<div id="dlg-buttons-registration-refusal">
+  <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveFileRefusal()" style="width:90px;text-align:center;">Сохранить</a>
+  <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgRegistrationRefusal').dialog('close');" style="width:90px;">Отмена</a>
+ </div>
+
+
+ <!-- ФОРМА ОТЗЫВА ДОКУМЕНТОВ -->
+
+<div id="dlgRevocation" class="easyui-dialog" style="width:500px;height: 600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons-revocation'">
+<form id="fmRevocation" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
+<h3>Отзыв пакета документов</h3>
+   <div style="margin-bottom:10px">
+    <input name="last_name" class="easyui-textbox" readonly="readonly" label="Фамилия:" style="width:100%">
+   </div>
+   <div style="margin-bottom:10px">
+    <input name="first_name" class="easyui-textbox" readonly="readonly" label="Имя:" style="width:100%">
+   </div>
+   <div style="margin-bottom:10px">
+    <input name="father_name" class="easyui-textbox" readonly="readonly" label="Отчество:" style="width:100%">
+   </div>
+   <div style="margin-bottom:50px">
+    <input type="date" name="birthday" class="easyui-textbox" readonly="readonly" label="Дата рождения:" style="width:100%">
+   </div>
+   <div id="fileInputUploadFileRevocation" style="margin-bottom:10px">
+    </div> 
+    <div style="margin-bottom:20px">
+    <input type="date" name="DateRevocation" class="easyui-textbox" required="true" label="Дата отзыва документов:" style="width:100%">
+   </div>
+   <div class="progress"></div>
+    <div class="progressmsg"></div>
+</form>
+</div>
+<div id="dlg-buttons-revocation">
+  <a href="javascript:void(0);" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveFileRevocation()" style="width:90px;text-align:center;">Сохранить</a>
+  <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgRevocation').dialog('close');" style="width:90px;">Отмена</a>
  </div>
 
  <h3 class="info">Телефон тех. поддержки 0(778)3-52-90 (Иван)</h3>

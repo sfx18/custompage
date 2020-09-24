@@ -150,6 +150,58 @@ function saveFile() {
     });
 }
 
+function saveFileRefusal(){
+    jQuery('#fmRegistrationRefusal').form('submit',{
+    url: url,
+    onSubmit: function(){
+    return jQuery(this).form('validate');
+    },
+    success: function(response){
+        console.log(response);
+    var respData = jQuery.parseJSON(response);
+    if(respData.status == 0){
+        jQuery.messager.show({
+            title: 'Ошибка',
+            msg: respData.msg
+        });
+    }else{
+        jQuery.messager.show({
+            title: 'Оповещение',
+            msg: respData.msg
+        });
+        jQuery('#dlgRegistrationRefusal').dialog('close');
+        jQuery('#dg').datagrid('reload');
+    }
+}
+});
+}
+
+function saveFileRevocation(){
+    jQuery('#fmRevocation').form('submit',{
+    url: url,
+    onSubmit: function(){
+    return jQuery(this).form('validate');
+    },
+    success: function(response){
+        console.log(response);
+    var respData = jQuery.parseJSON(response);
+    if(respData.status == 0){
+        jQuery.messager.show({
+            title: 'Ошибка',
+            msg: respData.msg
+        });
+    }else{
+        jQuery.messager.show({
+            title: 'Оповещение',
+            msg: respData.msg
+        });
+        jQuery('#dlgRevocation').dialog('close');
+        jQuery('#dg').datagrid('reload');
+    }
+}
+});
+}
+
 
 function saveUser() {
     $('#fm').form('submit', {
@@ -208,13 +260,51 @@ function registration() {
     jQuery('.progressmsg').text('');
     $('#fileInputUploadFile').html('<input type="file" accept=".docx, .doc" id ="avatar" name="avatar" style="width:100%">');
     var row = $('#dg').datagrid('getSelected');
-    if (row.DateReg2 != '') {
-        alert('Кандидат уже зарегистрирован');
-        return false;
-    }
+    
     if (row) {
         $('#dlgRegistration').dialog('open').dialog('center').dialog('setTitle', 'Зарегистрировать');
         $('#fmRegistration').form('load', row);
         url = 'vendor/uploadFile.php?id=' + row.id;
     } else { alert('Выберите строку!') }
+    if ((row.DateReg2 || row.DateRegRefusal2 || row.DateRevocation2) != '') {
+        alert('Дата регистрации/отказа/отзыва документов уже назначена');
+        $('#dlgRegistration').dialog('close');
+        return false;
+    }
+}
+
+function registrationRefusal(){
+    $('.progress').text('');
+    jQuery('.progressmsg').text('');
+    jQuery('#fileInputUploadFileRefusal').html('<input type="file" accept=".docx, .doc" id ="avatar" name="avatar" style="width:100%">');
+        var row = jQuery('#dg').datagrid('getSelected');
+        
+        if (row){
+            jQuery('#dlgRegistrationRefusal').dialog('open').dialog('center').dialog('setTitle','Отказ');
+            jQuery('#fmRegistrationRefusal').form('load',row);
+            url = 'vendor/uploadFileRefusal.php?id='+row.id;
+        }else{alert('Выберите строку!')}
+        if ((row.DateReg2 || row.DateRegRefusal2 || row.DateRevocation2) != '') {
+            alert('Дата регистрации/отказа/отзыва документов уже назначена');
+            $('#dlgRegistrationRefusal').dialog('close');
+            return false;
+        }
+}
+
+function revocation(){
+    $('.progress').text('');
+    jQuery('.progressmsg').text('');
+    jQuery('#fileInputUploadFileRevocation').html('<input type="file" accept=".docx, .doc" id ="avatar" name="avatar" style="width:100%">');
+        var row = jQuery('#dg').datagrid('getSelected');
+        
+        if (row){
+            jQuery('#dlgRevocation').dialog('open').dialog('center').dialog('setTitle','Отзыв');
+            jQuery('#fmRevocation').form('load',row);
+            url = 'vendor/uploadFileRevocation.php?id='+row.id;
+        }else{alert('Выберите строку!')}
+        if ((row.DateReg2 || row.DateRegRefusal2 || row.DateRevocation2) != '') {
+            alert('Дата регистрации/отказа/отзыва документов уже назначена');
+            $('#dlgRevocation').dialog('close');
+            return false;
+        }
 }

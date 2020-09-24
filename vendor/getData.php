@@ -14,7 +14,7 @@ $whereSQL = "OkrBC LIKE '$searchTerm%' OR last_name LIKE '$searchTerm%' OR first
 $result = mysqli_query($connect, "SELECT COUNT(*) FROM (SELECT * FROM kandidat WHERE OkrBC = '$login') AS TIK WHERE $whereSQL"); 
 $row = mysqli_fetch_row($result); 
 $response["total"] = $row[0]; 
-$result = mysqli_query($connect, "SELECT * FROM (SELECT *, date_format(birthday,'%d.%m.%Y') as birthday2, date_format(DateVidv,'%d.%m.%Y') as DateVidv2, date_format(DateReg,'%d.%m.%Y') as DateReg2 FROM kandidat WHERE OkrBC = '$login') AS OIK WHERE $whereSQL ORDER BY last_name, first_name ASC LIMIT $offset,$rows");
+$result = mysqli_query($connect, "SELECT * FROM (SELECT *, date_format(birthday,'%d.%m.%Y') as birthday2, date_format(DateVidv,'%d.%m.%Y') as DateVidv2, date_format(DateReg,'%d.%m.%Y') as DateReg2, date_format(DateRegRefusal,'%d.%m.%Y') as DateRegRefusal2, date_format(DateRevocation,'%d.%m.%Y') as DateRevocation2 FROM kandidat WHERE OkrBC = '$login') AS OIK WHERE $whereSQL ORDER BY last_name, first_name ASC LIMIT $offset,$rows");
   
 $users = array(); 
    while($row = mysqli_fetch_assoc($result)){ 
@@ -23,6 +23,12 @@ $users = array();
       }
       if($row['DateReg'] == "0000-00-00"){
       $row['DateReg2'] = '';
+      }
+      if($row['DateRegRefusal'] == "0000-00-00"){
+         $row['DateRegRefusal2'] = '';
+      }
+      if($row['DateRevocation'] == "0000-00-00"){
+         $row['DateRevocation2'] = '';
       }
       array_push($users, $row); 
    } 

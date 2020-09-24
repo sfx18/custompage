@@ -1,3 +1,9 @@
+.icon-revocation{
+	background:url('icons/revocation.png') no-repeat center center;
+}
+.icon-del{
+	background:url('icons/del.png') no-repeat center center;
+}
 .icon-list{
 	background:url('icons/list.png') no-repeat center center;
 }

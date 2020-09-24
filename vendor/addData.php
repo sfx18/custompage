@@ -8,13 +8,15 @@ $response = array(
     'check' => 'Default'
 ); 
 if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( $_REQUEST['father_name']) && !empty($_REQUEST['birthday']) && !empty($_REQUEST['DateVidv'])){ 
-    $first_name = $_REQUEST['first_name'];
-    $last_name = $_REQUEST['last_name'];
-    $father_name = $_REQUEST['father_name']; 
+    $first_name = trim($_REQUEST['first_name']);
+    $last_name = trim($_REQUEST['last_name']);
+    $father_name = trim($_REQUEST['father_name']);
     $birthday = $_REQUEST['birthday'];
     $DateVidv = $_REQUEST['DateVidv'];
     $DateReg = $_REQUEST['DateReg'];
-    $NumOkr = $_REQUEST['NumOkr'];
+    $DateRegRefusal = $_REQUEST['DateRegRefusal'];
+    $DateRevocation = $_REQUEST['DateRevocation'];
+    $NumOkr = trim($_REQUEST['NumOkr']);
     $login = $_SESSION['user']['login'];
     $folder_name = "$last_name $first_name $father_name";
     $path = "/var/kandidat/$login/$folder_name";
@@ -45,7 +47,7 @@ if(!empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty( 
         $first_name = mb_strtoupper($first_name);
         $last_name = mb_strtoupper($last_name);
         $father_name = mb_strtoupper($father_name);
-        $sql = "INSERT INTO `kandidat` (`first_name`,`last_name`,`father_name`,`birthday`,`DateVidv`, `DateReg`, `OkrBC`,`NumOkr`,`path`) VALUES ('$first_name','$last_name','$father_name','$birthday', '$DateVidv', '$DateReg', '$login','$NumOkr', '$path')"; 
+        $sql = "INSERT INTO `kandidat` (`first_name`,`last_name`,`father_name`,`birthday`,`DateVidv`, `DateReg`, `DateRegRefusal`, `DateRevocation`, `OkrBC`,`NumOkr`,`path`) VALUES ('$first_name','$last_name','$father_name','$birthday', '$DateVidv', '$DateReg', '$DateRegRefusal', '$DateRevocation', '$login','$NumOkr', '$path')"; 
         $insert = mysqli_query($connect,$sql);
         if($insert){
             $response['check'] = 'Запись успешно добавлена в бд';
